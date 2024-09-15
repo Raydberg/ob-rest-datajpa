@@ -2,9 +2,12 @@ package com.example.ob_rest_datajpa.controller;
 
 import com.example.ob_rest_datajpa.entities.Book;
 import com.example.ob_rest_datajpa.repository.BookRepository;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +48,8 @@ public class BookController {
      * @return
      */
     @GetMapping("api/books/{id}")
-    public ResponseEntity<Book> findOneById(@PathVariable Long id) {
+    @Operation(summary = "Esto es un summary", description = "Esto es una descripción")
+    public ResponseEntity<Book> findOneById( @Parameter(description = "Descripcion de @Parameter") @PathVariable Long id) {
         Optional<Book> bookOpt = bookRepository.findById(id);
 //         if (bookOpt.isPresent())
 //            return ResponseEntity.ok(bookOpt.get());
@@ -93,7 +97,6 @@ public class BookController {
         Book result = bookRepository.save(book);
         return ResponseEntity.ok(result);
     }
-
     /**
      * Metodo DELETE para eliminar un libro
      *

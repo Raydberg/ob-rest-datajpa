@@ -1,18 +1,22 @@
 package com.example.ob_rest_datajpa.entities;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "books")
+@Schema(description = "uso de @Shema desde la entity book")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "Uso de @Schema desde la entity Book en 'id' ")
     private Long id;
     private String title;
     private String author;
     private Integer pages;
+    @Schema(description = "Uso de @Schema desde la entity book en 'price'")
     private Double price;
     private LocalDate releaseDate;
     private Boolean online;
